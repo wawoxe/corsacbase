@@ -10,9 +10,9 @@ We kindly request that you do not publicly disclose the issue until we have addr
 
 This section outlines the currently supported versions of the project regarding security updates and patches.
 
-| Version | Supported             |
-|-------| --------------------- |
-|       |     |
+| Version | Supported          |
+|---------|--------------------|
+| 0.0.1   | :white_check_mark: |
 
 Ensure you are using a supported version to receive security updates.
 
