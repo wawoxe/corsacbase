@@ -1,6 +1,17 @@
 {
+    "name": "wawoxe/corsacbase",
+    "version": "0.0.1",
+    "authors": [
+        {
+            "name": "Mykyta Melnyk",
+            "email": "corsacsquad@gmail.com",
+            "role": "Developer",
+            "homepage": "https://github.com/wawoxe"
+        }
+    ],
+    "homepage": "https://github.com/wawoxe/corsacbase",
     "type": "project",
-    "license": "proprietary",
+    "license": "MIT",
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
