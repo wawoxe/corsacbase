@@ -23,7 +23,7 @@ final class UserFixtures extends Fixture
 
             $user = (new User())
                 ->setEmail('user' . $i . '@example.com')
-                ->setPassword('user' . $i)
+                ->setPlainPassword('user' . $i)
                 ->setRoles($roles);
 
             $manager->persist($user);

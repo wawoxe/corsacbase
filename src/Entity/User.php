@@ -32,6 +32,8 @@ final class User extends Entity implements UserInterface, PasswordAuthenticatedU
     #[ORM\Column]
     private ?string $password = null;
 
+    private ?string $plainPassword = null;
+
     public function getId(): Uuid
     {
         return $this->id;
@@ -85,12 +87,23 @@ final class User extends Entity implements UserInterface, PasswordAuthenticatedU
         return $this;
     }
 
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(?string $plainPassword): static
+    {
+        $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
     /**
      * @see UserInterface
      */
     public function eraseCredentials(): void
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        $this->plainPassword = null;
     }
 }
