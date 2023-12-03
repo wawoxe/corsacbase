@@ -1,34 +1,43 @@
 {
-    "devDependencies": {
-        "@babel/core": "^7.17.0",
-        "@babel/preset-env": "^7.16.0",
-        "@symfony/webpack-encore": "^4.0.0",
-        "@typescript-eslint/eslint-plugin": "^6.13.1",
-        "@typescript-eslint/parser": "^6.13.1",
-        "core-js": "^3.23.0",
-        "eslint": "^8.55.0",
-        "eslint-config-prettier": "^9.1.0",
-        "husky": "^8.0.3",
-        "lint-staged": "^15.1.0",
-        "prettier": "^3.1.0",
-        "regenerator-runtime": "^0.13.9",
-        "sass": "^1.69.5",
-        "sass-loader": "^13.3.2",
-        "ts-loader": "^9.5.1",
-        "typescript": "^5.3.2",
-        "webpack": "^5.74.0",
-        "webpack-cli": "^4.10.0",
-        "webpack-notifier": "^1.15.0"
-    },
-    "license": "UNLICENSED",
-    "private": true,
-    "scripts": {
-        "dev-server": "encore dev-server",
-        "dev": "encore dev",
-        "watch": "encore dev --watch",
-        "build": "encore production --progress",
-        "lint": "eslint assets/**/*.ts",
-        "format": "eslint assets/**/*.ts --fix",
-        "pretty": "prettier --write \"assets/**/*.ts\""
-    }
+  "devDependencies": {
+    "@babel/core": "^7.17.0",
+    "@babel/preset-env": "^7.16.0",
+    "@symfony/webpack-encore": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "core-js": "^3.23.0",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0",
+    "prettier": "^3.1.0",
+    "regenerator-runtime": "^0.13.9",
+    "sass": "^1.69.5",
+    "sass-loader": "^13.3.2",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.2",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-notifier": "^1.15.0"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production --progress",
+    "lint": "eslint assets/**/*.ts",
+    "format": "eslint assets/**/*.ts --fix",
+    "pretty": "prettier --write \"assets/**/*.ts\"",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{ts}": [
+      "eslint --quiet --fix"
+    ],
+    "*.{json,ts}": [
+      "prettier --write --ignore-unknown"
+    ]
+  }
 }
