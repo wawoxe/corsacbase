@@ -1,5 +1,10 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    globals:
+        APP_NAME: '%app.name%'
+        APP_AUTHOR: '%app.author%'
+        APP_COPYRIGHT_NAME: '%app.copyright.name%'
+        APP_COPYRIGHT_YEAR: '%app.copyright.year%'
 
 when@test:
     twig:

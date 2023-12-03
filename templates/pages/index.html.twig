@@ -3,5 +3,16 @@
 {% block title %}Index{% endblock %}
 
 {% block body %}
-    Welcome to CorsacBase!
+    <div>Welcome to {{ APP_NAME }}! Made by {{ APP_AUTHOR }}</div>
+    <div>
+        {% set current_year = 'now'|date('Y') %}
+
+        {% if current_year is same as(APP_COPYRIGHT_YEAR) %}
+            {% set copyright_years = current_year %}
+        {% else %}
+            {% set copyright_years = APP_COPYRIGHT_YEAR ~ '-' ~ current_year %}
+        {% endif %}
+
+        © Copyright {{ APP_COPYRIGHT_NAME }} {{ copyright_years }}
+    </div>
 {% endblock %}
