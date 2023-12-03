@@ -41,6 +41,27 @@ You can find example commands below.
 Additionally, you don't have to manually run each command as Husky and Lint-Staged have been 
 installed in the project, which will automatically trigger checks before creating a git commit.
 
+### Symfony
+
+```shell
+composer code:validation # check code with PHPInsights
+composer code:fix # same as previous, but with automatic fix
+```
+
+### TypeScript
+
+```shell
+# Install Husky events
+yarn prepare # or npx prepare
+
+# ESLint
+yarn lint # or npx lint
+yarn format # or npx format
+
+# Prettier
+yarn pretty # or npx pretty
+```
+
 ## Issue
 
 This repository is maintained actively, so if you face any issue please 
