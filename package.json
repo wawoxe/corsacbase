@@ -33,7 +33,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{ts}": [
+    "*.ts": [
       "eslint --quiet --fix"
     ],
     "*.{json,ts}": [
