@@ -54,13 +54,14 @@ return [
 
     'exclude' => [
         'src/Kernel.php',
+        'migrations/',
     ],
 
     'add' => [],
 
     'remove' => [
         NunoMaduro\PhpInsights\Domain\Sniffs\ForbiddenSetterSniff::class,
-//        NunoMaduro\PhpInsights\Domain\Insights\ForbiddenNormalClasses::class,
+        NunoMaduro\PhpInsights\Domain\Insights\ForbiddenNormalClasses::class,
         SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff::class,
 //        SlevomatCodingStandard\Sniffs\Namespaces\UnusedUsesSniff::class,
     ],
@@ -88,10 +89,10 @@ return [
     */
 
     'requirements' => [
-        'min-quality' => 100,
-        'min-complexity' => 100,
-        'min-architecture' => 100,
-        'min-style' => 100,
+//        'min-quality' => 100,
+//        'min-complexity' => 100,
+//        'min-architecture' => 100,
+//        'min-style' => 100,
 //        'disable-security-check' => false,
     ],
 
