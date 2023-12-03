@@ -1,0 +1,16 @@
+# Specific Folders
+node_modules/
+test-results/
+playwright-report
+summary.json
+public/
+vendor/
+
+# IDE
+.vscode/*
+.idea/*
+
+# System Files
+.DS_Store
+Thumbs.db
+{"mode":"full","isActive":false}

@@ -3,7 +3,11 @@
         "@babel/core": "^7.17.0",
         "@babel/preset-env": "^7.16.0",
         "@symfony/webpack-encore": "^4.0.0",
+        "@typescript-eslint/eslint-plugin": "^6.13.1",
+        "@typescript-eslint/parser": "^6.13.1",
         "core-js": "^3.23.0",
+        "eslint": "^8.55.0",
+        "prettier": "^3.1.0",
         "regenerator-runtime": "^0.13.9",
         "sass": "^1.69.5",
         "sass-loader": "^13.3.2",
@@ -19,6 +23,9 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production --progress"
+        "build": "encore production --progress",
+        "lint": "eslint assets/**/*.ts",
+        "format": "eslint assets/**/*.ts --fix",
+        "pretty": "prettier --write \"assets/**/*.ts\""
     }
 }
