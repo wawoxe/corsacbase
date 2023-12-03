@@ -12,6 +12,8 @@ final class UserFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        $userRepository = $manager->getRepository(User::class);
+
         for ($i = 0; $i < 100; $i++) {
             $isAdmin = (bool) rand(0, 1);
 
@@ -26,7 +28,7 @@ final class UserFixtures extends Fixture
                 ->setPlainPassword('user' . $i)
                 ->setRoles($roles);
 
-            $manager->persist($user);
+            $userRepository->save($user);
         }
 
         $manager->flush();
