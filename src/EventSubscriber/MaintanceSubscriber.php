@@ -24,10 +24,15 @@ final class MaintanceSubscriber implements EventSubscriberInterface
         }
     }
 
+    /**
+     * @return array<string, array<string, int>>
+     */
     public static function getSubscribedEvents(): array
     {
         return [
-            KernelEvents::REQUEST => 'onKernelResponse',
+            KernelEvents::REQUEST => [
+                ['onKernelResponse', PHP_INT_MAX - 1000],
+            ],
         ];
     }
 }
