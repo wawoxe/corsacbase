@@ -1,0 +1,7 @@
+parameters:
+  app.maintenance: '%env(bool:APP_MAINTENANCE)%'
+  app.maintenance.type: '%env(string:APP_MAINTENANCE_TYPE)%'
+  app.name: '%env(APP_NAME)%'
+  app.author: '%env(APP_AUTHOR)%'
+  app.copyright.name: '%env(APP_COPYRIGHT_NAME)%'
+  app.copyright.year: '%env(APP_COPYRIGHT_YEAR)%'
