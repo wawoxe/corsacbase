@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
  *
  * @author Mykyta Melnyk <wawoxeq@gmail.com>
  */
-class ResponseHelper
+final class ResponseHelper
 {
     public const HTML_TYPE = 'html';
     public const JSON_TYPE = 'json';

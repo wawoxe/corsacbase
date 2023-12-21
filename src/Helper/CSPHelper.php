@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @author Mykyta Melnyk <wawoxeq@gmail.com>
  */
-class CSPHelper
+final class CSPHelper
 {
     public function __construct(
         private readonly ParameterBagInterface $parameterBag,
