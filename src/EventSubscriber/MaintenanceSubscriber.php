@@ -6,6 +6,7 @@ namespace App\EventSubscriber;
 
 use App\Helper\ResponseHelper;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -25,7 +26,12 @@ final class MaintenanceSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $event->setResponse($this->responseHelper->createResponse($this->maintenanceType));
+        $event->setResponse(
+            $this->responseHelper->createResponse(
+                $this->maintenanceType,
+                Response::HTTP_SERVICE_UNAVAILABLE
+            )
+        );
         $event->stopPropagation();
     }
 

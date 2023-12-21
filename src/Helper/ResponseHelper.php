@@ -18,12 +18,12 @@ class ResponseHelper
      */
     private array $types = [self::HTML_TYPE, self::JSON_TYPE];
 
-    public function createResponse(string $type): Response
+    public function createResponse(string $type, int $code): Response
     {
         $this->responseTypeIsValid($type);
 
         $response = $type === self::HTML_TYPE ? new Response() : new JsonResponse([]);
-        $response->setStatusCode(Response::HTTP_SERVICE_UNAVAILABLE);
+        $response->setStatusCode($code);
 
         return $response;
     }
