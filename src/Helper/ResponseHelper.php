@@ -6,7 +6,9 @@ namespace App\Helper;
 
 use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 class ResponseHelper
 {
@@ -18,14 +20,31 @@ class ResponseHelper
      */
     private array $types = [self::HTML_TYPE, self::JSON_TYPE];
 
+    public function __construct(
+        private readonly RequestStack $requestStack,
+    ) {
+    }
+
     public function createResponse(string $type, int $code): Response
     {
         $this->responseTypeIsValid($type);
 
-        $response = $type === self::HTML_TYPE ? new Response() : new JsonResponse([]);
+        $response = match ($type) {
+            self::HTML_TYPE => new Response(),
+            default => new JsonResponse([]),
+        };
+
         $response->setStatusCode($code);
 
         return $response;
+    }
+
+    /**
+     * Avoid triggering by listeners on sub-requests.
+     */
+    public function isMainRequest(ResponseEvent $event): bool
+    {
+        return $event->isMainRequest() || $this->requestStack->getMainRequest() !== null;
     }
 
     private function responseTypeIsValid(string $type): void
