@@ -20,7 +20,7 @@ final class MaintenanceSubscriber implements EventSubscriberInterface
         $this->maintenanceType = strtolower($this->maintenanceType);
     }
 
-    public function onKernelResponse(RequestEvent $event): void
+    public function onKernelRequest(RequestEvent $event): void
     {
         if ($this->maintenanceMode !== true) {
             return;
@@ -42,7 +42,7 @@ final class MaintenanceSubscriber implements EventSubscriberInterface
     {
         return [
             KernelEvents::REQUEST => [
-                ['onKernelResponse', PHP_INT_MAX - 1000], // Set up max priority
+                ['onKernelRequest', PHP_INT_MAX - 1000], // Set up max priority
             ],
         ];
     }
