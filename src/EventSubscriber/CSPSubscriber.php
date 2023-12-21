@@ -33,7 +33,7 @@ final class CSPSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            KernelEvents::REQUEST => [
+            KernelEvents::RESPONSE => [
                 ['onKernelResponse', PHP_INT_MAX - 1000], // Set up max priority
             ],
         ];
