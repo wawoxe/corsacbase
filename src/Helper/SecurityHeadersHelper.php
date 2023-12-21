@@ -7,6 +7,11 @@ namespace App\Helper;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Set up security headers from security_headers.yaml
+ *
+ * @author Mykyta Melnyk <wawoxeq@gmail.com>
+ */
 class SecurityHeadersHelper
 {
     public function __construct(

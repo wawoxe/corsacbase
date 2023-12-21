@@ -10,6 +10,11 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
+/**
+ * Helper for creating and validating responses.
+ *
+ * @author Mykyta Melnyk <wawoxeq@gmail.com>
+ */
 class ResponseHelper
 {
     public const HTML_TYPE = 'html';

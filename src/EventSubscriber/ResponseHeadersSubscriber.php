@@ -11,6 +11,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
+/**
+ * Set up security and CSP headers in Response.
+ *
+ * @author Mykyta Melnyk <wawoxeq@gmail.com>
+ */
 final class ResponseHeadersSubscriber implements EventSubscriberInterface
 {
     public function __construct(

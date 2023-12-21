@@ -7,6 +7,11 @@ namespace App\Helper;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Set up CSP headers from csp.yaml
+ *
+ * @author Mykyta Melnyk <wawoxeq@gmail.com>
+ */
 class CSPHelper
 {
     public function __construct(
