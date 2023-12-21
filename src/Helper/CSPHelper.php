@@ -4,17 +4,30 @@ declare(strict_types=1);
 
 namespace App\Helper;
 
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 class CSPHelper
 {
+    public function __construct(
+        private readonly ParameterBagInterface $parameterBag,
+    ) {
+    }
+
     /**
      * Set up Content-Security-Policy headers.
      * Configure values in csp.yaml
      */
-    public function setHeaders(Response $response): Response
+    public function setCSPHeader(Response $response): Response
     {
-        // TODO: get parameters from csp.yaml and configure CSP
+        $CSPParameters = $this->parameterBag->get('csp');
+        $CSPHeaderValue = '';
+
+        foreach ($CSPParameters as $parameter => $values) {
+            $CSPHeaderValue .= sprintf('%s %s; ', $parameter, implode(' ', $values));
+        }
+
+        $response->headers->set('Content-Security-Policy', rtrim($CSPHeaderValue));
 
         return $response;
     }

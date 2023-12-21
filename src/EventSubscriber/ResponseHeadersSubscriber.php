@@ -6,15 +6,17 @@ namespace App\EventSubscriber;
 
 use App\Helper\CSPHelper;
 use App\Helper\ResponseHelper;
+use App\Helper\SecurityHeadersHelper;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-final class CSPSubscriber implements EventSubscriberInterface
+final class ResponseHeadersSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private readonly ResponseHelper $responseHelper,
         private readonly CSPHelper $CSPHelper,
+        private readonly SecurityHeadersHelper $securityHeadersHelper,
     ) {
     }
 
@@ -24,7 +26,10 @@ final class CSPSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $event->setResponse($this->CSPHelper->setHeaders($event->getResponse()));
+        // Set up Content-Security-Policy Subscriber. See csp.yaml
+        $event->setResponse($this->CSPHelper->setCSPHeader($event->getResponse()));
+        // Set up security headers. See security_headers.yaml
+        $event->setResponse($this->securityHeadersHelper->setSecurityHeaders($event->getResponse()));
     }
 
     /**
