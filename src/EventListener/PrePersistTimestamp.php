@@ -16,13 +16,14 @@ use Doctrine\ORM\Events;
     priority: 501,
     connection: 'default',
 )]
-class PrePersistTimestamp
+final class PrePersistTimestamp
 {
     public function prePersist(PrePersistEventArgs $event): void
     {
         $entity = $event->getObject();
 
         if ($entity instanceof TimestampEntity) {
+            // Set up $createdAt and $updatedAt for new entity.
             $datetime = new DateTime();
             $entity
                 ->setCreatedAt(DateTimeImmutable::createFromMutable($datetime))

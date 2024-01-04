@@ -9,6 +9,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 final class MaintenanceSubscriber implements EventSubscriberInterface
 {
@@ -20,6 +23,11 @@ final class MaintenanceSubscriber implements EventSubscriberInterface
         $this->maintenanceType = strtolower($this->maintenanceType);
     }
 
+    /**
+     * @throws SyntaxError
+     * @throws RuntimeError
+     * @throws LoaderError
+     */
     public function onKernelRequest(RequestEvent $event): void
     {
         if ($this->maintenanceMode !== true) {

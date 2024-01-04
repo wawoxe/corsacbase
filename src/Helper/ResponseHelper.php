@@ -9,6 +9,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 /**
  * Helper for creating and validating responses.
@@ -27,15 +31,23 @@ final class ResponseHelper
 
     public function __construct(
         private readonly RequestStack $requestStack,
+        private readonly Environment $twig,
     ) {
     }
 
+    /**
+     * @throws SyntaxError
+     * @throws RuntimeError
+     * @throws LoaderError
+     */
     public function createResponse(string $type, int $code): Response
     {
         $this->responseTypeIsValid($type);
 
         $response = match ($type) {
-            self::HTML_TYPE => new Response(),
+            // Return rendered maintenance.html.twig template as HTTP response.
+            self::HTML_TYPE => new Response($this->twig->render('pages/maintenance.html.twig')),
+            // JSON Response as default.
             default => new JsonResponse([]),
         };
 
@@ -52,6 +64,9 @@ final class ResponseHelper
         return $event->isMainRequest() || $this->requestStack->getMainRequest() !== null;
     }
 
+    /**
+     * Response type validation.
+     */
     private function responseTypeIsValid(string $type): void
     {
         if (in_array($type, $this->types, true) === false) {

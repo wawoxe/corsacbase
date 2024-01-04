@@ -15,13 +15,14 @@ use Doctrine\ORM\Events;
     priority: 501,
     connection: 'default',
 )]
-class PreUpdateTimestamp
+final class PreUpdateTimestamp
 {
     public function preUpdate(PreUpdateEventArgs $event): void
     {
         $entity = $event->getObject();
 
         if ($entity instanceof TimestampEntity) {
+            // Set up new $updatedAt date.
             $entity->setUpdatedAt(new DateTime());
         }
     }
