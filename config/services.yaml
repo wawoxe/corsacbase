@@ -26,15 +26,6 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    App\EventSubscriber\DoctrineTimestampSubscriber:
-        tags:
-            - { name: doctrine.event_subscriber, connection: default }
-
-    App\EventSubscriber\UserSubscriber:
-        arguments: ['@security.user_password_hasher']
-        tags:
-            - { name: doctrine.event_subscriber, connection: default }
-
     App\EventSubscriber\MaintenanceSubscriber:
         bind:
             $maintenanceMode: '%app.maintenance%'

@@ -2,18 +2,23 @@
 
 declare(strict_types=1);
 
-namespace App\EventSubscriber;
+namespace App\EventListener;
 
 use App\Entity\TimestampEntity;
 use DateTime;
 use DateTimeImmutable;
-use Doctrine\Common\EventSubscriber;
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
+use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Events;
-use Doctrine\Persistence\Event\LifecycleEventArgs;
 
-final class DoctrineTimestampSubscriber implements EventSubscriber
+#[AsDoctrineListener(
+    event: Events::prePersist,
+    priority: 501,
+    connection: 'default',
+)]
+class PrePersistTimestamp
 {
-    public function prePersist(LifecycleEventArgs $event): void
+    public function prePersist(PrePersistEventArgs $event): void
     {
         $entity = $event->getObject();
 
@@ -23,13 +28,5 @@ final class DoctrineTimestampSubscriber implements EventSubscriber
                 ->setCreatedAt(DateTimeImmutable::createFromMutable($datetime))
                 ->setUpdatedAt($datetime);
         }
-    }
-
-    /**
-     * @return array<int, string>
-     */
-    public function getSubscribedEvents(): array
-    {
-        return [Events::prePersist];
     }
 }
